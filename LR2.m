@@ -84,3 +84,5 @@ subplot(4,2,8)
 stem(X,'.')
 hold on
 stem(Y,'r')
+
+%работа с Github
