@@ -1,0 +1,42 @@
+[System]
+Name='antibiotics'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=5
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='temperature'
+Range=[35 40]
+NumMFs=3
+MF1='low':'gaussmf',[1.062 35]
+MF2='average':'gaussmf',[1.062 37.5]
+MF3='high':'gaussmf',[1.062 40]
+
+[Input2]
+Name='leukocytes'
+Range=[0 10]
+NumMFs=2
+MF1='few':'trapmf',[0 0 1 3]
+MF2='many':'trapmf',[7 9 10 10]
+
+[Output1]
+Name='antibiotics'
+Range=[0 12]
+NumMFs=3
+MF1='no_need':'trimf',[0 2 4]
+MF2='one_course':'trimf',[4 6 8]
+MF3='two_courses':'trimf',[8 10 12]
+
+[Rules]
+1 1, 1 (1) : 2
+3 2, 3 (1) : 2
+2 0, 2 (1) : 2
+2 2, 3 (1) : 2
+1 2, 2 (1) : 2
